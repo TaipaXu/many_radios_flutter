@@ -1,0 +1,19 @@
+{
+    "appName": "Many Radios",
+    "tops": "Tops",
+    "search": "Search",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "clicksTitle": "Radios by clicks",
+    "votesTitle": "Radios by votes",
+    "recentClicksTitle": "Radios by recent click",
+    "recentlyChangeTitle": "Radios by recently change",
+    "searchName": "Name",
+    "searchNameHint": "Name of the radio",
+    "country": "Country",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "followSystem": "Follow system theme",
+    "lightTheme": "Light theme",
+    "darkTheme": "Dark theme"
+}

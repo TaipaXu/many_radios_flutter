@@ -1,0 +1,19 @@
+{
+    "appName": "一些广播",
+    "tops": "热门",
+    "search": "搜索",
+    "favorites": "收藏",
+    "settings": "设置",
+    "clicksTitle": "点击量",
+    "votesTitle": "投票数",
+    "recentClicksTitle": "最近点击",
+    "recentlyChangeTitle": "最近变化",
+    "searchName": "名称",
+    "searchNameHint": "广播名称",
+    "country": "国家",
+    "language": "语言",
+    "darkMode": "暗黑模式",
+    "followSystem": "跟随系统",
+    "lightTheme": "日间模式",
+    "darkTheme": "夜间模式"
+}
