@@ -6,6 +6,7 @@ import '/widgets/favicon.dart' as widget;
 import '/models/radio.dart' as model;
 import '/stores/radio.dart' as store;
 import '/storage/radio.dart';
+import '/events/favorite.dart' as event;
 
 class Radio extends StatelessWidget {
   final model.Radio radio;
@@ -44,6 +45,7 @@ class Radio extends StatelessWidget {
                       ? await RadioStorage.removeFavoriteRadio(radio)
                       : await RadioStorage.addFavoriteRadio(radio);
                   store.radio.update();
+                  event.favorite.fireEvent('update');
                 },
                 child: Text(S.of(context).confirm),
               ),

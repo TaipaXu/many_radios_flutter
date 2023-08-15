@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/widgets/favorite.dart' as widget;
 import '/models/radio.dart' as model;
 import '/storage/radio.dart';
+import '/events/favorite.dart' as event;
 
 class Favorites extends StatefulWidget {
   const Favorites({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class _FavoritesState extends State<Favorites> {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
   List<model.Radio>? _radios;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
@@ -22,6 +25,19 @@ class _FavoritesState extends State<Favorites> {
 
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _refreshIndicatorKey.currentState?.show());
+
+    _subscription = event.favorite.addEventListener((event) {
+      if (event.eventName == 'update') {
+        _loadFavorites();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+
+    super.dispose();
   }
 
   Future<void> _loadFavorites() async {
