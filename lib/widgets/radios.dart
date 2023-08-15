@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/models/radio.dart' as model;
-import './radio.dart' as widget;
+import '/widgets/radio.dart' as widget;
 
 class Radios extends StatelessWidget {
   final List<model.Radio> radios;

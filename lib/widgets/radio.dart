@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:x_responsive/x_responsive.dart';
+import '/generated/l10n.dart';
 import '/widgets/favicon.dart' as widget;
 import '/models/radio.dart' as model;
 import '/stores/radio.dart' as store;
+import '/storage/radio.dart';
 
 class Radio extends StatelessWidget {
   final model.Radio radio;
@@ -13,6 +15,43 @@ class Radio extends StatelessWidget {
   void _onTap() {
     HapticFeedback.mediumImpact();
     store.radio.play(radio);
+  }
+
+  void _onLongPress(BuildContext context) async {
+    HapticFeedback.mediumImpact();
+    final bool isFavoriteRadio = await RadioStorage.isFavoriteRadio(radio);
+    if (context.mounted) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          HapticFeedback.mediumImpact();
+          return AlertDialog(
+            title: Text(S.of(context).tips),
+            content: Text(isFavoriteRadio
+                ? S.of(context).removeFavorite
+                : S.of(context).addFavorite),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(S.of(context).cancel),
+              ),
+              TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  isFavoriteRadio
+                      ? await RadioStorage.removeFavoriteRadio(radio)
+                      : await RadioStorage.addFavoriteRadio(radio);
+                  store.radio.update();
+                },
+                child: Text(S.of(context).confirm),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -38,6 +77,7 @@ class Radio extends StatelessWidget {
               highlightColor: const Color.fromRGBO(255, 211, 33, 1),
               splashColor: const Color.fromRGBO(255, 211, 33, 0.3),
               onTap: _onTap,
+              onLongPress: () => _onLongPress(context),
               child: Padding(
                 padding: const EdgeInsets.all(15.0).copyWith(bottom: 0),
                 child: Column(

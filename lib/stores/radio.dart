@@ -41,6 +41,10 @@ class Radio with ChangeNotifier {
     _showPlayControl = false;
     notifyListeners();
   }
+
+  void update() {
+    notifyListeners();
+  }
 }
 
 final radio = Radio();

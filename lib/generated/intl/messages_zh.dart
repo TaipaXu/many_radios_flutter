@@ -22,8 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addFavorite": MessageLookupByLibrary.simpleMessage("收藏"),
         "appName": MessageLookupByLibrary.simpleMessage("一些广播"),
+        "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "clicksTitle": MessageLookupByLibrary.simpleMessage("点击量"),
+        "confirm": MessageLookupByLibrary.simpleMessage("确认"),
         "country": MessageLookupByLibrary.simpleMessage("国家"),
         "darkMode": MessageLookupByLibrary.simpleMessage("暗黑模式"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("夜间模式"),
@@ -33,10 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "lightTheme": MessageLookupByLibrary.simpleMessage("日间模式"),
         "recentClicksTitle": MessageLookupByLibrary.simpleMessage("最近点击"),
         "recentlyChangeTitle": MessageLookupByLibrary.simpleMessage("最近变化"),
+        "removeFavorite": MessageLookupByLibrary.simpleMessage("取消收藏"),
         "search": MessageLookupByLibrary.simpleMessage("搜索"),
         "searchName": MessageLookupByLibrary.simpleMessage("名称"),
         "searchNameHint": MessageLookupByLibrary.simpleMessage("广播名称"),
         "settings": MessageLookupByLibrary.simpleMessage("设置"),
+        "tips": MessageLookupByLibrary.simpleMessage("提示"),
         "tops": MessageLookupByLibrary.simpleMessage("热门"),
         "votesTitle": MessageLookupByLibrary.simpleMessage("投票数")
       };

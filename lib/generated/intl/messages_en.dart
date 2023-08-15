@@ -22,8 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addFavorite": MessageLookupByLibrary.simpleMessage("Add to favorites"),
         "appName": MessageLookupByLibrary.simpleMessage("Many Radios"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "clicksTitle": MessageLookupByLibrary.simpleMessage("Radios by clicks"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("Dark theme"),
@@ -36,11 +39,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Radios by recent click"),
         "recentlyChangeTitle":
             MessageLookupByLibrary.simpleMessage("Radios by recently change"),
+        "removeFavorite":
+            MessageLookupByLibrary.simpleMessage("Remove from favorites"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchName": MessageLookupByLibrary.simpleMessage("Name"),
         "searchNameHint":
             MessageLookupByLibrary.simpleMessage("Name of the radio"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "tips": MessageLookupByLibrary.simpleMessage("Tips"),
         "tops": MessageLookupByLibrary.simpleMessage("Tops"),
         "votesTitle": MessageLookupByLibrary.simpleMessage("Radios by votes")
       };

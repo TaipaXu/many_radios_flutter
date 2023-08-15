@@ -160,6 +160,56 @@ class S {
     );
   }
 
+  /// `Tips`
+  String get tips {
+    return Intl.message(
+      'Tips',
+      name: 'tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to favorites`
+  String get addFavorite {
+    return Intl.message(
+      'Add to favorites',
+      name: 'addFavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove from favorites`
+  String get removeFavorite {
+    return Intl.message(
+      'Remove from favorites',
+      name: 'removeFavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Country`
   String get country {
     return Intl.message(
