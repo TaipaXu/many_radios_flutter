@@ -14,30 +14,34 @@ class Radio with ChangeNotifier {
 
   bool get showPlayControl => _showPlayControl;
 
+  @override
+  Radio() {
+    _player.addStatusChangedCallback((bool playing) {
+      _isPlaying = playing;
+      notifyListeners();
+    });
+  }
+
   void play(model.Radio radio) {
     _radio = radio;
-    _isPlaying = true;
     _showPlayControl = true;
-    _player.play(radio.url);
+    _player.play(radio);
 
     notifyListeners();
   }
 
   void pause() {
     _player.pause();
-    _isPlaying = false;
     notifyListeners();
   }
 
   void resume() {
     _player.resume();
-    _isPlaying = true;
     notifyListeners();
   }
 
   void stop() {
     _player.stop();
-    _isPlaying = false;
     _showPlayControl = false;
     notifyListeners();
   }

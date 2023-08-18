@@ -14,12 +14,13 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  intl: ^0.18.0
   http: ^0.13.5
-  audioplayers: ^5.1.0
   shared_preferences: ^2.2.0
   provider: ^6.0.5
   x_responsive: ^0.2.0
-  intl: ^0.18.0
+  just_audio: ^0.9.34
+  just_audio_background: ^0.0.1-beta.10
 
 dev_dependencies:
   flutter_test:
