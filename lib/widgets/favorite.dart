@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '/widgets/favicon.dart' as widget;
 import '/models/radio.dart' as model;
+import '/stores/radio.dart' as store;
 
 class Favorite extends StatelessWidget {
   final model.Radio child;
   final Function? onRemove;
   const Favorite({Key? key, required this.child, this.onRemove})
       : super(key: key);
+
+  void _onTap() {
+    HapticFeedback.mediumImpact();
+    store.radio.play(child);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,7 @@ class Favorite extends StatelessWidget {
             ),
           ],
         ),
-        onTap: () {},
+        onTap: _onTap,
       ),
     );
   }
