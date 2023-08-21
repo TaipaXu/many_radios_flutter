@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '/generated/l10n.dart';
 import '/widgets/favorite.dart' as widget;
 import '/models/radio.dart' as model;
+import '/stores/radio.dart' as store;
 import '/storage/radio.dart';
 import '/events/favorite.dart' as event;
 
@@ -50,11 +52,33 @@ class _FavoritesState extends State<Favorites> {
   Future<void> _removeFavoriteRadio(model.Radio radio) async {
     HapticFeedback.mediumImpact();
 
-    setState(() {
-      _radios?.remove(radio);
-    });
-    await RadioStorage.removeFavoriteRadio(radio);
-    _loadFavorites();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(S.of(context).tips),
+          content: Text(S.of(context).removeFavorite),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(S.of(context).cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                _radios?.remove(radio);
+                await RadioStorage.removeFavoriteRadio(radio);
+                store.radio.update();
+                _loadFavorites();
+              },
+              child: Text(S.of(context).confirm),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
