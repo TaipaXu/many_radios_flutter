@@ -8,13 +8,17 @@ class Favicon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      favicon,
+    return FadeInImage.assetNetwork(
+      image: favicon,
       width: size,
       height: size,
       fit: BoxFit.cover,
-      errorBuilder:
-          (BuildContext context, Object exception, StackTrace? stackTrace) =>
+      placeholder: '',
+      placeholderErrorBuilder:
+          (BuildContext context, Object error, StackTrace? stackTrace) =>
+              const CircularProgressIndicator(),
+      imageErrorBuilder:
+          (BuildContext context, Object error, StackTrace? stackTrace) =>
               Image.asset(
         'assets/images/radio.png',
         width: size,
