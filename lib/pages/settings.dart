@@ -91,10 +91,9 @@ class _SettingsState extends State<Settings> {
     try {
       dynamic data = await api.getServers();
       data.forEach((item) {
-        servers.add(model.Server(
-          name: item['name'],
-          ip: item['ip'],
-        ));
+        if (item['ip'].contains('.')) {
+          servers.add(model.Server.fromJson(item));
+        }
       });
     } catch (e) {}
     setState(() {

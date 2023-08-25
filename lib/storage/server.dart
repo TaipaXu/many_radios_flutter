@@ -19,4 +19,9 @@ class ServerStorage {
       return model.Server.fromJson(json.decode(str));
     }
   }
+
+  static Future<String> getServerIp() async {
+    final model.Server? server = await getServer();
+    return server?.ip ?? '91.132.145.114';
+  }
 }
