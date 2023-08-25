@@ -20,5 +20,6 @@
     "darkMode": "Dark Mode",
     "followSystem": "Follow system theme",
     "lightTheme": "Light theme",
-    "darkTheme": "Dark theme"
+    "darkTheme": "Dark theme",
+    "server": "Server"
 }

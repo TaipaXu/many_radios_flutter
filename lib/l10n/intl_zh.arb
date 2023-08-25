@@ -20,5 +20,6 @@
     "darkMode": "暗黑模式",
     "followSystem": "跟随系统",
     "lightTheme": "日间模式",
-    "darkTheme": "夜间模式"
+    "darkTheme": "夜间模式",
+    "server": "服务器"
 }

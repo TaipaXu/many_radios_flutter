@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("搜索"),
         "searchName": MessageLookupByLibrary.simpleMessage("名称"),
         "searchNameHint": MessageLookupByLibrary.simpleMessage("广播名称"),
+        "server": MessageLookupByLibrary.simpleMessage("服务器"),
         "settings": MessageLookupByLibrary.simpleMessage("设置"),
         "tips": MessageLookupByLibrary.simpleMessage("提示"),
         "tops": MessageLookupByLibrary.simpleMessage("热门"),

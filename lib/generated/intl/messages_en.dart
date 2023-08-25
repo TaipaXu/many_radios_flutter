@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchName": MessageLookupByLibrary.simpleMessage("Name"),
         "searchNameHint":
             MessageLookupByLibrary.simpleMessage("Name of the radio"),
+        "server": MessageLookupByLibrary.simpleMessage("Server"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "tips": MessageLookupByLibrary.simpleMessage("Tips"),
         "tops": MessageLookupByLibrary.simpleMessage("Tops"),
