@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/storage/theme.dart' as storage;
+import '/storage/server.dart' as storage;
 import '/stores/theme.dart' as store;
 import '/generated/l10n.dart';
 import '/models/server.dart' as model;
@@ -23,6 +24,7 @@ class _SettingsState extends State<Settings> {
 
     _getTheme();
     _getServers();
+    _getCurrentServer();
   }
 
   Future<void> _getTheme() async {
@@ -100,6 +102,13 @@ class _SettingsState extends State<Settings> {
     });
   }
 
+  Future<void> _getCurrentServer() async {
+    final model.Server? server = await storage.ServerStorage.getServer();
+    setState(() {
+      _currentServer = server;
+    });
+  }
+
   Widget _serverSelector() => ListTile(
         title: Text(S.of(context).server),
         subtitle: Text(_currentServer?.name ?? ''),
@@ -122,6 +131,7 @@ class _SettingsState extends State<Settings> {
           if (server != null) {
             setState(() {
               _currentServer = server;
+              storage.ServerStorage.setServer(server);
             });
           }
         },
