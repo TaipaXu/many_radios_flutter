@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_responsive/x_responsive.dart';
 import '/pages/oneTypeTopRadios.dart' as page;
 import '/widgets/radios.dart' as widget;
+import '/widgets/skeleton.dart' as widget;
 import '/models/radio.dart' as model;
 import '/models/topRadios.dart' as model;
 import '/apis/radio.dart' as api;
@@ -99,9 +100,20 @@ class SomeTopRadiosState extends State<SomeTopRadios> {
               ],
             ),
           ),
-          widget.Radios(
-            radios: _radios.take(count).toList(),
-          ),
+          if (_isLoading)
+            const Column(
+              children: [
+                widget.Skeleton(),
+                widget.Skeleton(),
+                widget.Skeleton(),
+                widget.Skeleton(),
+                widget.Skeleton(),
+              ],
+            ),
+          if (!_isLoading)
+            widget.Radios(
+              radios: _radios.take(count).toList(),
+            ),
         ],
       );
     });
