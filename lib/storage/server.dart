@@ -22,6 +22,6 @@ class ServerStorage {
 
   static Future<String> getServerIp() async {
     final model.Server? server = await getServer();
-    return server?.ip ?? '91.132.145.114';
+    return server?.ip ?? '89.58.16.19';
   }
 }
