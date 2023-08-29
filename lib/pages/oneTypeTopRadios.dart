@@ -25,7 +25,7 @@ class _OneTypeTopRadiosState extends State<OneTypeTopRadios>
   late final AnimationController _animationController;
   bool _isLoading = false;
   int _offset = 0;
-  final int _limit = 20;
+  final int _limit = 45;
   List<model.Radio> _radios = [];
 
   @override
