@@ -5,7 +5,7 @@ import '/generated/l10n.dart';
 import '/widgets/favicon.dart' as widget;
 import '/models/radio.dart' as model;
 import '/stores/radio.dart' as store;
-import '/storage/radio.dart';
+import '/storages/radio.dart';
 import '/events/favorite.dart' as event;
 
 class Radio extends StatelessWidget {
@@ -20,7 +20,7 @@ class Radio extends StatelessWidget {
 
   void _onLongPress(BuildContext context) async {
     HapticFeedback.mediumImpact();
-    final bool isFavoriteRadio = await RadioStorage.isFavoriteRadio(radio);
+    final bool isFavoriteRadio = await radioStorage.isFavoriteRadio(radio);
     if (context.mounted) {
       showDialog(
         context: context,
@@ -42,8 +42,8 @@ class Radio extends StatelessWidget {
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isFavoriteRadio
-                      ? await RadioStorage.removeFavoriteRadio(radio)
-                      : await RadioStorage.addFavoriteRadio(radio);
+                      ? await radioStorage.removeFavoriteRadio(radio)
+                      : await radioStorage.addFavoriteRadio(radio);
                   store.radio.update();
                   event.favorite.fireEvent('update');
                 },

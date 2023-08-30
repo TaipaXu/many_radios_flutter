@@ -3,9 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '/models/radio.dart' as model;
 
 class RadioStorage {
-  static const String storageFavorite = 'favorites';
+  final String storageFavorite = 'favorites';
 
-  static Future<void> addFavoriteRadio(model.Radio radio) async {
+  Future<void> addFavoriteRadio(model.Radio radio) async {
     if (await isFavoriteRadio(radio)) {
       return;
     }
@@ -19,7 +19,7 @@ class RadioStorage {
     }
   }
 
-  static Future<void> removeFavoriteRadio(model.Radio radio) async {
+  Future<void> removeFavoriteRadio(model.Radio radio) async {
     List<model.Radio>? statoins = await getFavoriteRadios();
     if (statoins != null) {
       statoins.remove(radio);
@@ -28,12 +28,12 @@ class RadioStorage {
     }
   }
 
-  static Future<bool> isFavoriteRadio(model.Radio radio) async {
+  Future<bool> isFavoriteRadio(model.Radio radio) async {
     List<model.Radio> statoins = await getFavoriteRadios() ?? [];
     return statoins.contains(radio);
   }
 
-  static Future<List<model.Radio>?> getFavoriteRadios() async {
+  Future<List<model.Radio>?> getFavoriteRadios() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? str = sp.getString(storageFavorite);
     if (str == null) {
@@ -44,3 +44,5 @@ class RadioStorage {
     }
   }
 }
+
+final RadioStorage radioStorage = RadioStorage();

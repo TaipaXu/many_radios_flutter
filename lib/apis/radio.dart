@@ -1,10 +1,10 @@
 import '/network/request.dart';
 import '/models/topRadios.dart' as model;
-import '/storage/server.dart' as storage;
+import '/storages/server.dart';
 
 Future<dynamic> getRadiosByType(
     {required model.TopRadiosType type, int offset = 0, int limit = 10}) async {
-  final String ip = await storage.ServerStorage.getServerIp();
+  final String ip = await serverStorage.getServerIp();
   late String url;
   switch (type) {
     case model.TopRadiosType.byClicks:

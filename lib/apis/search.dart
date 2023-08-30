@@ -1,15 +1,15 @@
 import '/network/request.dart';
-import '/storage/server.dart' as storage;
+import '/storages/server.dart';
 
 Future<dynamic> getCountries() async {
-  final String ip = await storage.ServerStorage.getServerIp();
+  final String ip = await serverStorage.getServerIp();
   return Request.get(
     'http://$ip/json/countries',
   );
 }
 
 Future<dynamic> getLanguages() async {
-  final String ip = await storage.ServerStorage.getServerIp();
+  final String ip = await serverStorage.getServerIp();
   return Request.get(
     'http://$ip/json/languages',
   );
@@ -21,7 +21,7 @@ Future<dynamic> searchRadios(
     String? language,
     int offset = 0,
     int limit = 10}) async {
-  final String ip = await storage.ServerStorage.getServerIp();
+  final String ip = await serverStorage.getServerIp();
   return Request.get(
     'http://$ip/json/stations/search',
     params: {

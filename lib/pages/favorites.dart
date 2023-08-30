@@ -5,7 +5,7 @@ import '/generated/l10n.dart';
 import '/widgets/favorite.dart' as widget;
 import '/models/radio.dart' as model;
 import '/stores/radio.dart' as store;
-import '/storage/radio.dart';
+import '/storages/radio.dart';
 import '/events/favorite.dart' as event;
 
 class Favorites extends StatefulWidget {
@@ -43,7 +43,7 @@ class _FavoritesState extends State<Favorites> {
   }
 
   Future<void> _loadFavorites() async {
-    List<model.Radio>? radios = await RadioStorage.getFavoriteRadios();
+    List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
     setState(() {
       _radios = radios;
     });
@@ -69,7 +69,7 @@ class _FavoritesState extends State<Favorites> {
               onPressed: () async {
                 Navigator.of(context).pop();
                 _radios?.remove(radio);
-                await RadioStorage.removeFavoriteRadio(radio);
+                await radioStorage.removeFavoriteRadio(radio);
                 store.radio.update();
                 _loadFavorites();
               },
