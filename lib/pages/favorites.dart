@@ -43,7 +43,7 @@ class _FavoritesState extends State<Favorites> {
   }
 
   Future<void> _loadFavorites() async {
-    List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+    List<model.Radio>? radios = await radioStorage.get();
     setState(() {
       _radios = radios;
     });
@@ -69,7 +69,7 @@ class _FavoritesState extends State<Favorites> {
               onPressed: () async {
                 Navigator.of(context).pop();
                 _radios?.remove(radio);
-                await radioStorage.removeFavoriteRadio(radio);
+                await radioStorage.remove(radio);
                 store.radio.update();
                 _loadFavorites();
               },

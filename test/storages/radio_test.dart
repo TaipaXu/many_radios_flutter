@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:many_radios/storages/radio.dart';
@@ -15,8 +17,8 @@ void main() {
         favicon: 'favicon',
         url: 'url',
       );
-      await radioStorage.addFavoriteRadio(radio);
-      final List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio);
+      final List<model.Radio>? radios = await radioStorage.get();
       expect(radios!.length, 1);
       expect(radios[0].name, 'name');
       expect(radios[0].favicon, 'favicon');
@@ -29,9 +31,9 @@ void main() {
         favicon: 'favicon',
         url: 'url',
       );
-      await radioStorage.addFavoriteRadio(radio);
-      await radioStorage.addFavoriteRadio(radio);
-      final List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio);
+      await radioStorage.add(radio);
+      final List<model.Radio>? radios = await radioStorage.get();
       expect(radios!.length, 1);
       expect(radios[0].name, 'name');
       expect(radios[0].favicon, 'favicon');
@@ -44,11 +46,11 @@ void main() {
         favicon: 'favicon',
         url: 'url',
       );
-      await radioStorage.addFavoriteRadio(radio);
-      List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio);
+      List<model.Radio>? radios = await radioStorage.get();
       expect(radios!.length, 1);
-      await radioStorage.removeFavoriteRadio(radio);
-      radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.remove(radio);
+      radios = await radioStorage.get();
       expect(radios!.length, 0);
     });
 
@@ -63,12 +65,12 @@ void main() {
         favicon: 'favicon2',
         url: 'url2',
       );
-      await radioStorage.removeFavoriteRadio(radio2);
-      List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.remove(radio2);
+      List<model.Radio>? radios = await radioStorage.get();
       expect(radios, null);
-      await radioStorage.addFavoriteRadio(radio);
-      await radioStorage.removeFavoriteRadio(radio2);
-      radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio);
+      await radioStorage.remove(radio2);
+      radios = await radioStorage.get();
       expect(radios!.length, 1);
       expect(radios[0].name, 'name');
       expect(radios[0].favicon, 'favicon');
@@ -81,8 +83,8 @@ void main() {
         favicon: 'favicon',
         url: 'url',
       );
-      await radioStorage.addFavoriteRadio(radio);
-      final bool isFavorite = await radioStorage.isFavoriteRadio(radio);
+      await radioStorage.add(radio);
+      final bool isFavorite = await radioStorage.contains(radio);
       expect(isFavorite, true);
     });
 
@@ -92,7 +94,7 @@ void main() {
         favicon: 'favicon',
         url: 'url',
       );
-      final bool isFavorite = await radioStorage.isFavoriteRadio(radio);
+      final bool isFavorite = await radioStorage.contains(radio);
       expect(isFavorite, false);
     });
 
@@ -107,9 +109,9 @@ void main() {
         favicon: 'favicon2',
         url: 'url2',
       );
-      await radioStorage.addFavoriteRadio(radio1);
-      await radioStorage.addFavoriteRadio(radio2);
-      final List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio1);
+      await radioStorage.add(radio2);
+      final List<model.Radio>? radios = await radioStorage.get();
       expect(radios!.length, 2);
       expect(radios[0].name, 'name1');
       expect(radios[0].favicon, 'favicon1');
@@ -120,7 +122,7 @@ void main() {
     });
 
     test('should get null if there are no favorite radios', () async {
-      final List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      final List<model.Radio>? radios = await radioStorage.get();
       expect(radios, null);
     });
 
@@ -135,9 +137,9 @@ void main() {
         favicon: 'favicon2',
         url: 'url2',
       );
-      await radioStorage.addFavoriteRadio(radio1);
-      await radioStorage.addFavoriteRadio(radio2);
-      final List<model.Radio>? radios = await radioStorage.getFavoriteRadios();
+      await radioStorage.add(radio1);
+      await radioStorage.add(radio2);
+      final List<model.Radio>? radios = await radioStorage.get();
       expect(radios!.length, 2);
       expect(radios[0].name, 'name1');
       expect(radios[0].favicon, 'favicon1');

@@ -20,7 +20,7 @@ class Radio extends StatelessWidget {
 
   void _onLongPress(BuildContext context) async {
     HapticFeedback.mediumImpact();
-    final bool isFavoriteRadio = await radioStorage.isFavoriteRadio(radio);
+    final bool isFavoriteRadio = await radioStorage.contains(radio);
     if (context.mounted) {
       showDialog(
         context: context,
@@ -42,8 +42,8 @@ class Radio extends StatelessWidget {
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isFavoriteRadio
-                      ? await radioStorage.removeFavoriteRadio(radio)
-                      : await radioStorage.addFavoriteRadio(radio);
+                      ? await radioStorage.remove(radio)
+                      : await radioStorage.add(radio);
                   store.radio.update();
                   event.favorite.fireEvent('update');
                 },

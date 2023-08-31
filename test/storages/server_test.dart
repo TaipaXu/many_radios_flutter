@@ -14,16 +14,16 @@ void main() {
         name: 'name',
         ip: '192.168.1.1',
       );
-      await serverStorage.setServer(server);
+      await serverStorage.set(server);
 
-      final model.Server? storedRadio = await serverStorage.getServer();
+      final model.Server? storedRadio = await serverStorage.get();
       expect(storedRadio != null, true);
       expect(storedRadio!.name, 'name');
       expect(storedRadio.ip, '192.168.1.1');
     });
 
     test('should get null if there are no server', () async {
-      final model.Server? storedRadio = await serverStorage.getServer();
+      final model.Server? storedRadio = await serverStorage.get();
       expect(storedRadio, null);
     });
 
@@ -37,7 +37,7 @@ void main() {
         name: 'name',
         ip: '192.168.1.1',
       );
-      await serverStorage.setServer(server);
+      await serverStorage.set(server);
 
       final String ip = await serverStorage.getServerIp();
       expect(ip, '192.168.1.1');

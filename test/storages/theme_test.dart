@@ -10,14 +10,14 @@ void main() {
     });
 
     test('should set a theme', () async {
-      await themeStorage.setTheme(ThemeMode.dark);
+      await themeStorage.set(ThemeMode.dark);
 
-      final ThemeMode theme = await themeStorage.getTheme();
+      final ThemeMode theme = await themeStorage.get();
       expect(theme, ThemeMode.dark);
     });
 
     test('should get a default theme', () async {
-      final ThemeMode theme = await themeStorage.getTheme();
+      final ThemeMode theme = await themeStorage.get();
       expect(theme, ThemeMode.system);
     });
   });

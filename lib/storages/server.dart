@@ -1,27 +1,28 @@
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 import '/models/server.dart' as model;
+import './serializer.dart';
 
-class ServerStorage {
-  final String storageServer = 'server';
-
-  Future<void> setServer(model.Server server) async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    await sp.setString(storageServer, json.encode(server.toJson()));
+class ServerSerializer extends Serializer<model.Server, model.Server?> {
+  @override
+  String encode(model.Server data) {
+    return json.encode(data.toJson());
   }
 
-  Future<model.Server?> getServer() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    String? str = sp.getString(storageServer);
-    if (str == null) {
+  @override
+  model.Server? decode(String? data) {
+    if (data == null) {
       return null;
     } else {
-      return model.Server.fromJson(json.decode(str));
+      return model.Server.fromJson(json.decode(data));
     }
   }
+}
+
+class ServerStorage extends Storage<model.Server, model.Server?> {
+  ServerStorage() : super('server', ServerSerializer());
 
   Future<String> getServerIp() async {
-    final model.Server? server = await getServer();
+    final model.Server? server = await this.get();
     return server?.ip ?? '89.58.16.19';
   }
 }

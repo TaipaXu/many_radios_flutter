@@ -5,7 +5,7 @@ class Theme with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
 
   Theme() {
-    themeStorage.getTheme().then((ThemeMode themeMode) {
+    themeStorage.get().then((ThemeMode themeMode) {
       this.themeMode = themeMode;
     });
   }

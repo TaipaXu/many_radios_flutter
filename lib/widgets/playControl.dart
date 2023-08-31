@@ -33,7 +33,7 @@ class _PlayControlState extends State<PlayControl> {
 
   void _checkRadioStore() async {
     if (store.radio.radio != null) {
-      _isFavorite = await radioStorage.isFavoriteRadio(store.radio.radio!);
+      _isFavorite = await radioStorage.contains(store.radio.radio!);
     }
   }
 
@@ -76,10 +76,10 @@ class _PlayControlState extends State<PlayControl> {
 
     if (_isFavorite) {
       _isFavorite = false;
-      radioStorage.removeFavoriteRadio(store.radio.radio!);
+      radioStorage.remove(store.radio.radio!);
     } else {
       _isFavorite = true;
-      radioStorage.addFavoriteRadio(store.radio.radio!);
+      radioStorage.add(store.radio.radio!);
     }
     setState(() {});
   }

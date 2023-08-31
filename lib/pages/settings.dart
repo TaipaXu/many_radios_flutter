@@ -28,7 +28,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Future<void> _getTheme() async {
-    _theme = await themeStorage.getTheme();
+    _theme = await themeStorage.get();
     setState(() {});
   }
 
@@ -45,7 +45,7 @@ class _SettingsState extends State<Settings> {
           _theme = value;
         });
         store.theme.themeMode = value;
-        themeStorage.setTheme(value);
+        themeStorage.set(value);
       },
     );
   }
@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
                 }
               });
               store.theme.themeMode = _theme;
-              themeStorage.setTheme(_theme);
+              themeStorage.set(_theme);
             },
           ),
         ),
@@ -102,7 +102,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Future<void> _getCurrentServer() async {
-    final model.Server? server = await serverStorage.getServer();
+    final model.Server? server = await serverStorage.get();
     setState(() {
       _currentServer = server;
     });
@@ -130,7 +130,7 @@ class _SettingsState extends State<Settings> {
           if (server != null) {
             setState(() {
               _currentServer = server;
-              serverStorage.setServer(server);
+              serverStorage.set(server);
             });
           }
         },
