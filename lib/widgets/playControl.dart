@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '/widgets/favicon.dart' as widget;
-import '/storage/radio.dart';
+import '/storages/radio.dart';
 import '/stores/radio.dart' as store;
 
 class PlayControl extends StatefulWidget {
@@ -33,7 +33,7 @@ class _PlayControlState extends State<PlayControl> {
 
   void _checkRadioStore() async {
     if (store.radio.radio != null) {
-      _isFavorite = await RadioStorage.isFavoriteRadio(store.radio.radio!);
+      _isFavorite = await radioStorage.contains(store.radio.radio!);
     }
   }
 
@@ -76,10 +76,10 @@ class _PlayControlState extends State<PlayControl> {
 
     if (_isFavorite) {
       _isFavorite = false;
-      RadioStorage.removeFavoriteRadio(store.radio.radio!);
+      radioStorage.remove(store.radio.radio!);
     } else {
       _isFavorite = true;
-      RadioStorage.addFavoriteRadio(store.radio.radio!);
+      radioStorage.add(store.radio.radio!);
     }
     setState(() {});
   }

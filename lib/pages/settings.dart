@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '/storage/theme.dart' as storage;
-import '/storage/server.dart' as storage;
+import '/storages/theme.dart';
+import '/storages/server.dart';
 import '/stores/theme.dart' as store;
 import '/generated/l10n.dart';
 import '/models/server.dart' as model;
@@ -28,7 +28,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Future<void> _getTheme() async {
-    _theme = await storage.ThemeStorage.getTheme();
+    _theme = await themeStorage.get();
     setState(() {});
   }
 
@@ -45,7 +45,7 @@ class _SettingsState extends State<Settings> {
           _theme = value;
         });
         store.theme.themeMode = value;
-        storage.ThemeStorage.setTheme(value);
+        themeStorage.set(value);
       },
     );
   }
@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
                 }
               });
               store.theme.themeMode = _theme;
-              storage.ThemeStorage.setTheme(_theme);
+              themeStorage.set(_theme);
             },
           ),
         ),
@@ -102,7 +102,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Future<void> _getCurrentServer() async {
-    final model.Server? server = await storage.ServerStorage.getServer();
+    final model.Server? server = await serverStorage.get();
     setState(() {
       _currentServer = server;
     });
@@ -130,7 +130,7 @@ class _SettingsState extends State<Settings> {
           if (server != null) {
             setState(() {
               _currentServer = server;
-              storage.ServerStorage.setServer(server);
+              serverStorage.set(server);
             });
           }
         },

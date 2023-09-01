@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '/storage/theme.dart';
+import '/storages/theme.dart';
 
 class Theme with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
 
   Theme() {
-    ThemeStorage.getTheme().then((ThemeMode themeMode) {
+    themeStorage.get().then((ThemeMode themeMode) {
       this.themeMode = themeMode;
     });
   }
