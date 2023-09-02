@@ -141,6 +141,19 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).settings),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'about');
+            },
+            child: Text(
+              S.of(context).about,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView(
         children: [

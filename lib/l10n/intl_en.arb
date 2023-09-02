@@ -21,5 +21,6 @@
     "followSystem": "Follow system theme",
     "lightTheme": "Light theme",
     "darkTheme": "Dark theme",
-    "server": "Server"
+    "server": "Server",
+    "about": "About"
 }

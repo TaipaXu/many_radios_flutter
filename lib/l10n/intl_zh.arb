@@ -21,5 +21,6 @@
     "followSystem": "跟随系统",
     "lightTheme": "日间模式",
     "darkTheme": "夜间模式",
-    "server": "服务器"
+    "server": "服务器",
+    "about": "关于"
 }

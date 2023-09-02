@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import '/pages/splash.dart' as page;
 import '/pages/home.dart' as page;
+import '/pages/about.dart' as page;
 import '/pages/settings.dart' as page;
 import '/stores/radio.dart' as store;
 import '/stores/theme.dart' as store;
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         'splash': (context) => const page.Splash(),
         'home': (context) => const page.Home(),
         'settings': (context) => const page.Settings(),
+        'about': (context) => const page.About(),
       },
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
